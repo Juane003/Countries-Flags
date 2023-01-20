@@ -31,13 +31,14 @@ export const FlagDetails = () => {
   } = data[0];
 
   const nativeNameKey = Object.keys(name.nativeName);
-  const currenciesKey = Object.keys(currencies);
+  const currenciesKey = currencies ? Object.keys(currencies) : undefined;
   const languagesKey = Object.keys(languages);
 
-  const currenciesList = currenciesKey.map((key, index) => {
+  const currenciesList = currenciesKey?.map((key, index) => {
     if (index === currenciesKey.length - 1) return `${currencies[key].name} `;
     else return `${currencies[key].name}, `;
   });
+
   const languagesList = languagesKey.map((key, index) => {
     if (index === languagesKey.length - 1) return `${languages[key]} `;
     else return `${languages[key]}, `;
@@ -87,7 +88,7 @@ export const FlagDetails = () => {
             <div className="pt-20 flex gap-4 items-center flex-col sm:flex-row">
               <span className="font-semibold">Border Countries: </span>
               <div className="grid grid-cols-3 gap-2">
-                {borders.map(renderBorders)}
+                {borders?.map(renderBorders)}
               </div>
             </div>
           )}
@@ -99,7 +100,7 @@ export const FlagDetails = () => {
 
 interface StyledSpanProps {
   text: string;
-  data: string | string[];
+  data: string | string[] | undefined;
 }
 
 const StyledSpan = ({ text, data }: StyledSpanProps) => {
