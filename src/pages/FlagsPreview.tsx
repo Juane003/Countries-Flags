@@ -8,7 +8,7 @@ import { FlagPreview } from "../components/FlagPreview";
 const continents = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 import { Country } from "../types";
-import { LoadingSpinner } from "../components/LoadingSpinner";
+import { SkeletonContainer } from "../components/Skeleton";
 
 export const FlagPreviewPage = () => {
   const [filter, setFilter] = useState("");
@@ -32,7 +32,7 @@ export const FlagPreviewPage = () => {
     },
   });
 
-  if (status === "loading") return <LoadingSpinner />;
+  if (status === "loading") return <SkeletonContainer />;
   if (status === "error") return <h1>{JSON.stringify(error)}</h1>;
 
   const handleOnSearch = (event: ChangeEvent<HTMLInputElement>) => {
